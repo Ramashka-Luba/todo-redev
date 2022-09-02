@@ -9,6 +9,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    margin-bottom: 15px;
 }
 /* .innerItem:hover {
     background-color: #4b4441;

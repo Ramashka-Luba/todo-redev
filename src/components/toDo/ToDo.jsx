@@ -1,15 +1,20 @@
-import s from "./Item.css";
+import s from "./ToDo.css";
 import Delete from "./../../assets/delete.png"
 import Edit from "./../../assets/edit.png"
 
-const Item = () => {
+const ToDo = ({text, todo, todos, setTodos}) => {
+    // Events
+    const deleteHandler = () => {
+        setTodos(todos.filter((el) => el.id !== todo.id)); //создает новый список todos, без удаляемого todo
+    };
+
     return (
         <div className="innerItem">
             <div className="item">
-                To Do 1
+                {text}
             </div>
             <div className="wrap">
-                <button className="delete">
+                <button onClick={deleteHandler} className="delete">
                     <img src={Delete} alt="delete" />
                 </button>
                 <button className="edit">
@@ -20,4 +25,4 @@ const Item = () => {
     );
 }
 
-export default Item;
+export default ToDo;

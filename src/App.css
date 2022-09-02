@@ -11,6 +11,8 @@
 .inner {
   height: 80%;
   width: 40%;
+  min-width: 525px;
+
   padding: 50px;
 
   display: flex;
@@ -22,3 +24,12 @@
 
 }
 
+.title {
+  font-size: 30px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.list {
+  width: 100%;
+}
