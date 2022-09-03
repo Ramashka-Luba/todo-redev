@@ -17,12 +17,21 @@
     transition: background-color 0.15s ease-in-out;
 } */
 
-.delete, .edit {
+.btn {
     background: none;
     margin-left: 10px;
     cursor: pointer; 
 }
-.delete:hover, .edit:hover {
+.btn img {
+    width: 20px;
+    height: 20px;
+}
+.btn-delete:hover, .btn-edit:hover, .btn-done:hover {
     transform: scale(1.3);
     transition: transform 400ms ease;
 } 
+
+.completed {
+    text-decoration: line-through;
+    color: rgb(232, 194, 147);
+}

@@ -8,7 +8,10 @@ import ToDo from './components/toDo/ToDo';
 function App() {
 
   const [inputText, setInputText] = useState('');
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([
+    {id: 0, text: "dhsrtjtyj", completed: false},
+    {id: 1, text: "dhsrtjtyj", completed: false}
+  ]);
 
   return (
     <div className="App">
