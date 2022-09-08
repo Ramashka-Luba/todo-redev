@@ -8,10 +8,19 @@ import ToDo from './components/toDo/ToDo';
 function App() {
 
   const [inputText, setInputText] = useState('');
-  const [todos, setTodos] = useState([
-    {id: 0, text: "dhsrtjtyj", completed: false},
-    {id: 1, text: "dhsrtjtyj", completed: false}
-  ]);
+  const [todos, setTodos] = useState([]);
+  // const [edit,setEdit] = useState(false);
+
+  // const changeTodo = (id, editText) => {
+  //   console.log("---changeTodo----");
+  //   let arr = [
+  //     ...todos.map((item) =>
+  //       item.id === id ? { ...item, text: editText } : item
+  //     ),
+  //   ];
+  //  console.log(arr);
+  //   setTodos(arr);
+  // };
 
   return (
     <div className="App">
@@ -25,12 +34,14 @@ function App() {
           setInputText={setInputText} />
 
         <ul className="list">
-          {todos.map((todo) => (
+          {todos.map((todo, index) => (
             <ToDo 
+            // changeTodo = {changeTodo}
               todos={todos}
               setTodos={setTodos}
               text={todo.text}
               key={todo.id}
+              index={index}
               todo={todo} />
           ))}
         </ul>
@@ -89,3 +100,33 @@ export default App;
 
 
 {/* ------------ ------------- ------------ */ }
+
+
+
+
+    // {id: 0, text: "dhsrtjtyj", completed: false},
+    // {id: 1, text: "dhsrtjtyj", completed: false},
+    // {id: 2, text: "dhsrtjtyj", completed: false},
+    // {id: 3, text: "dhsrtjtyj", completed: false},
+    // {id: 4, text: "dhsrtjtyj", completed: false},
+    // {id: 5, text: "dhsrtjtyj", completed: false},
+    // {id: 6, text: "dhsrtjtyj", completed: false},
+    // {id: 7, text: "dhsrtjtyj", completed: false},
+    // {id: 8, text: "dhsrtjtyj", completed: false},
+    // {id: 9, text: "dhsrtjtyj", completed: false},
+    // {id: 10, text: "dhsrtjtyj", completed: false},
+    // {id: 11, text: "dhsrtjtyj", completed: false},
+    // {id: 12, text: "dhsrtjtyj", completed: false},
+    // {id: 13, text: "dhsrtjtyj", completed: false},
+    // {id: 14, text: "dhsrtjtyj", completed: false},
+    // {id: 15, text: "dhsrtjtyj", completed: false},
+    // {id: 16, text: "dhsrtjtyj", completed: false},
+    // {id: 17, text: "dhsrtjtyj", completed: false},
+    // {id: 18, text: "dhsrtjtyj", completed: false},
+    // {id: 19, text: "dhsrtjtyj", completed: false},
+    // {id: 20, text: "dhsrtjtyj", completed: false},
+    // {id: 21, text: "dhsrtjtyj", completed: false},
+    // {id: 22, text: "dhsrtjtyj", completed: false},
+    // {id: 23, text: "dhsrtjtyj", completed: false},
+    // {id: 24, text: "dhsrtjtyj", completed: false},
+    // {id: 25, text: "dhsrtjtyj", completed: false},

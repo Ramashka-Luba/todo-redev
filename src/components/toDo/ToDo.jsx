@@ -2,8 +2,14 @@ import s from "./ToDo.css";
 import Delete from "./../../assets/delete.png";
 import Edit from "./../../assets/edit.png";
 import Done from "./../../assets/done.png";
+import Save from "./../../assets/save.png";
+import { useState } from "react";
 
-const ToDo = ({ text, todo, todos, setTodos }) => {
+const ToDo = ({ id, text, todo, todos, setTodos, index }) => {
+    
+    const [isEdit, setIsEdit] = useState(false);
+    const [editText, setEditText] = useState(text);
+    
     // Events
     const deleteHandler = () => {
         setTodos(todos.filter((el) => el.id !== todo.id)); //создает новый список todos, без удаляемого todo
@@ -11,26 +17,42 @@ const ToDo = ({ text, todo, todos, setTodos }) => {
 
     const completeHandler = () => {
         setTodos(todos.map(item => {
-            if(item.id === todo.id) {
+            if (item.id === todo.id) {
                 return {
-                    ...item, completed: !item. completed
+                    ...item, completed: !item.completed
                 };
             }
             return item;
         }))
-    }
+    };
+
+    const changeTodo = (id, editText) => {
+        console.log("---changeTodo----");
+        let arr = [
+            ...todos.map((item) =>
+                item.id === id ? { ...item, text: editText } : item
+            ),
+        ];
+        console.log(arr);
+        setTodos(arr);
+    };
+
+    const handleButton = () => {
+        if (isEdit) {
+            setIsEdit(!isEdit);
+            changeTodo(id, editText);
+        } else {
+            setIsEdit(!isEdit);
+        }
+    };
 
     return (
-        <div className="innerItem">
+        <div className={`innerItem ${index % 2 == 0 && "bg-color"}`}>
 
-            {/* <div className="checkbox">
-                <input className="checkbox-input" type="checkbox" id="checkbox_1" />
-                <lable className="hekbox-lable" for="checkbox_1">Done</lable>
-            </div> */}
-
-            <div className={`item ${todo.completed ? "completed": ""} `}>
-                {text}
-            </div>
+            {isEdit
+                ? <input className="input-edit" value={editText} onChange={(event) => setEditText(event.target.value)} />
+                : <div className={`item ${todo.completed && "completed"} `}>{text}</div>
+            }
 
             <div className="wrap">
 
@@ -38,8 +60,10 @@ const ToDo = ({ text, todo, todos, setTodos }) => {
                     <img src={Done} alt="done" />
                 </button>
 
-                <button className="btn btn-edit">
-                    <img src={Edit} alt="edit" />
+                <button onClick={() => handleButton()} className="btn btn-edit">
+                    {isEdit
+                        ? <img src={Save} alt="save" />
+                        : <img src={Edit} alt="edit" />}
                 </button>
 
                 <button onClick={deleteHandler} className="btn btn-delete">

@@ -2,7 +2,8 @@
     width: 100%;
     padding: 10px 20px;
 
-    background-color:#655d5a;;
+    background-color:#cfbeba;
+    color:black;
     border-radius: 10px;
     font-size: 15px;
 
@@ -34,4 +35,9 @@
 .completed {
     text-decoration: line-through;
     color: rgb(232, 194, 147);
+}
+
+.bg-color {
+    background-color:#655d5a;
+    color:white;
 }
