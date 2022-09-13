@@ -13,14 +13,34 @@
 
     margin-bottom: 15px;
 }
+.wrap-left{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
 /* .innerItem:hover {
     background-color: #4b4441;
     transition: background-color 0.15s ease-in-out;
 } */
-
+.wrap-rigth {
+    display: flex;
+    margin-left: 10px;
+}
+.task-text {
+    width: 100%;
+}
+.input-edit {
+    background-color: transparent;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    outline: none;
+    width: 100%;
+    color: rgb(121, 9, 89)
+}
 .btn {
     background: none;
-    margin-left: 10px;
+    margin-right: 10px;
     cursor: pointer; 
 }
 .btn img {

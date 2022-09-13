@@ -9,7 +9,7 @@
   padding: 50px 0;
 }
 
-.inner {
+.innerApp {
   min-height: 90vh;
   width: 40%;
   min-width: 525px;
@@ -25,7 +25,7 @@
 
 }
 
-.title {
+.titleApp {
   font-size: 30px;
   color: white;
   margin-bottom: 30px;

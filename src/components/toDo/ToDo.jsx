@@ -1,78 +1,67 @@
-import s from "./ToDo.css";
-import Delete from "./../../assets/delete.png";
-import Edit from "./../../assets/edit.png";
+import './ToDo.css';
+import { useState, useEffect, useRef } from "react";
 import Done from "./../../assets/done.png";
+import Edit from "./../../assets/edit.png";
+import Delete from "./../../assets/delete.png";
 import Save from "./../../assets/save.png";
-import { useState } from "react";
 
-const ToDo = ({ id, text, todo, todos, setTodos, index }) => {
-    
+
+const ToDo = ({ task, handleDelete, handleEdit, tasks, setTasks }) => {
+
     const [isEdit, setIsEdit] = useState(false);
-    const [editText, setEditText] = useState(text);
-    
-    // Events
-    const deleteHandler = () => {
-        setTodos(todos.filter((el) => el.id !== todo.id)); //создает новый список todos, без удаляемого todo
-    };
+    const [text, setText] = useState(task.title);
 
-    const completeHandler = () => {
-        setTodos(todos.map(item => {
-            if (item.id === todo.id) {
+    const handleComplete = () => {
+        setTasks(tasks.map( item => {
+            if (item.id === task.id) {
                 return {
                     ...item, completed: !item.completed
                 };
             }
             return item;
         }))
-    };
+        // console.log("handleComplete");
+    }
 
-    const changeTodo = (id, editText) => {
-        console.log("---changeTodo----");
-        let arr = [
-            ...todos.map((item) =>
-                item.id === id ? { ...item, text: editText } : item
-            ),
-        ];
-        console.log(arr);
-        setTodos(arr);
-    };
-
-    const handleButton = () => {
+    const toglle = () => {
         if (isEdit) {
+            handleEdit(task.id, text);
             setIsEdit(!isEdit);
-            changeTodo(id, editText);
         } else {
             setIsEdit(!isEdit);
         }
     };
 
+    //---------Задать фокус на инпут---------//
+    const inputEl = useRef(null);
+    const onFocusInput = () => {
+        inputEl.current.focus(); // current указывает на смонтированный элемент input
+    };
+
+    // componentDidMount
+    // useEffect( () => { 
+    //     inputEl.current.focus();
+    // }, []);
+ //---------Задать фокус на инпут---------//
+
+
     return (
-        <div className={`innerItem ${index % 2 == 0 && "bg-color"}`}>
-
-            {isEdit
-                ? <input className="input-edit" value={editText} onChange={(event) => setEditText(event.target.value)} />
-                : <div className={`item ${todo.completed && "completed"} `}>{text}</div>
-            }
-
-            <div className="wrap">
-
-                <button onClick={completeHandler} className="btn btn-done">
-                    <img src={Done} alt="done" />
-                </button>
-
-                <button onClick={() => handleButton()} className="btn btn-edit">
+        <>
+            <div className={`innerItem ${task.id % 2 === 0 && "bg-color"}`}>
+                <div className="wrap-left">
+                    <button onClick = {handleComplete} className="btn btn-done">
+                        <img src={Done} alt="done" />
+                    </button>
                     {isEdit
-                        ? <img src={Save} alt="save" />
-                        : <img src={Edit} alt="edit" />}
-                </button>
-
-                <button onClick={deleteHandler} className="btn btn-delete">
-                    <img src={Delete} alt="delete" />
-                </button>
-
-
+                        ? <input className="input-edit" ref={inputEl} onChange={(e) => setText(e.target.value)} value={text} />
+                        : <div className={`task-text ${task.completed && "completed"}`}>{task.title}</div>}
+                </div>
+                <div className="wrap-rigth">
+                    <button className="btn btn-delete" onClick={() => handleDelete(task.id)}><img src={Delete} alt="delete" /></button>
+                    <button className="btn btn-edit" onClick={() => toglle()}> {isEdit ? <img src={Save} alt="save" /> : <img onClick = {onFocusInput} src={Edit} alt="edit" />} </button>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
