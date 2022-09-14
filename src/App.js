@@ -8,9 +8,9 @@ import ToDo from './components/toDo/ToDo.jsx'
 const App = () => {
 
   const [tasks, setTasks] = useState([
-    // { id: 1, title: "Orange" },
-    // { id: 2, title: "Apple" },
-    // { id: 3, title: "Banana" },
+    { id: 1, title: "Orange", completed: false},
+    { id: 2, title: "Apple", completed: false},
+    { id: 3, title: "Banana", completed: false},
   ]);
   
   const handleDelete = (id) => {
@@ -37,7 +37,7 @@ const App = () => {
         <ul className="list">
           {tasks.map((task) => (
             <ToDo key={task.id}  //чтобы пофиксить ошибку с "key" - корневому элементу добавляем key и присваиваем наш id
-            task = {task}
+                  task = {task}
                   handleDelete = {handleDelete}
                   handleEdit = {handleEdit}
                   tasks = {tasks}

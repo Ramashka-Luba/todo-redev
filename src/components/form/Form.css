@@ -2,36 +2,32 @@
     display: flex;
     width: 100%;
     justify-content: center;
-
     margin-bottom: 30px;
 }
 .input {
     width: 100%;
     padding: 10px 20px;
-
     border-radius: 10px 0 0 10px;
-    background-color: #9e8781;
-    border: 3px solid #675d5a;
-    color: white;
+    background-color: #F7F7FF;
+    box-sizing: border-box;
     font-size: 15px;
 }
 .input:focus {
-    border-color: #bdbdbd;
-    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+    box-sizing: border-box;
+    box-shadow: 0 0 0 0.2rem rgba(247, 146, 162, 0.25);
     outline: 0;
 }
-
 .add {
     padding: 10px 20px;
     min-width: 105px;
     
     border-radius: 0 10px 10px 0;
-    background-color: #675d5a;
+    background-color: #f792a2;
     color: white;
     font-size: 15px;
     cursor: pointer;
 }
 .add:hover {
-    background-color: #4b4441;
+    background-color: #FD5F78;
     transition: background-color 0.15s ease-in-out;
 }

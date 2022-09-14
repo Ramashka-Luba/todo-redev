@@ -1,6 +1,6 @@
 import './ToDo.css';
 import { useState, useEffect, useRef } from "react";
-import Done from "./../../assets/done.png";
+// import Done from "./../../assets/done.png";
 import Edit from "./../../assets/edit.png";
 import Delete from "./../../assets/delete.png";
 import Save from "./../../assets/save.png";
@@ -49,9 +49,12 @@ const ToDo = ({ task, handleDelete, handleEdit, tasks, setTasks }) => {
         <>
             <div className={`innerItem ${task.id % 2 === 0 && "bg-color"}`}>
                 <div className="wrap-left">
-                    <button onClick = {handleComplete} className="btn btn-done">
+                    {/* <button onClick = {handleComplete} className="btn btn-done">
                         <img src={Done} alt="done" />
-                    </button>
+                    </button> */}
+                    <div className="checkbox" onClick = {handleComplete} >
+                        <input className="checkboxInput" type="checkbox" />
+                    </div>
                     {isEdit
                         ? <input className="input-edit" ref={inputEl} onChange={(e) => setText(e.target.value)} value={text} />
                         : <div className={`task-text ${task.completed && "completed"}`}>{task.title}</div>}

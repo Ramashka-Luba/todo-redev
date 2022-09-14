@@ -2,8 +2,8 @@
     width: 100%;
     padding: 10px 20px;
 
-    background-color:#cfbeba;
-    color:black;
+    background-color: #F7F7FF;
+    color: #6e7285;
     border-radius: 10px;
     font-size: 15px;
 
@@ -44,8 +44,8 @@
     cursor: pointer; 
 }
 .btn img {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
 .btn-delete:hover, .btn-edit:hover, .btn-done:hover {
     transform: scale(1.3);
@@ -54,10 +54,64 @@
 
 .completed {
     text-decoration: line-through;
-    color: rgb(232, 194, 147);
+    color: #FD5F78;
 }
 
 .bg-color {
-    background-color:#655d5a;
-    color:white;
+    background-color:#ebebfd;
+}
+
+
+
+.checkbox {
+    position: relative;
+    margin-right: 10px;
+    /* width: 18px;
+    height: 18px; */
+    cursor: pointer;
+}
+
+.checkboxInput {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    /* position: absolute; */
+    
+}
+
+.checkboxInput::before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+
+    position: absolute;
+    top:0;
+    left: 0;
+
+    border: 2px solid #38D7C5;
+    border-radius: 3px;
+}
+
+.checkboxInput::after {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 9.42px;
+
+    background: url('./../../assets/done.png') no-repeat;
+    background-size: 12px, 9.42px;
+
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    z-index: 2;
+
+    opacity: 0;
+    transition: opacity .1s liner;
+}
+
+.checkboxInput:checked + .checkboxInput::after{
+    opacity: 1;
+    /* background-color:#FD5F78; */
 }
