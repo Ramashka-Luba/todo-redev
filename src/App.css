@@ -6,13 +6,12 @@
   min-height: 100vh;
 
   background: #EBEDFA;
-  padding: 50px 0;
 }
 
 .innerApp {
-  min-height: 90vh;
+  height: 90vh;
   width: 40%;
-  min-width: 525px;
+  min-width: 360px;
 
   padding: 50px;
 
@@ -25,12 +24,21 @@
   box-shadow: 10px 10px 15px rgba(126, 154, 253, 0.2)
 }
 
+
 .titleApp {
   font-size: 25px;
   margin-bottom: 30px;
   font-weight: 600;
+  text-align: center;
 }
 
 .list {
   width: 100%;
+  overflow: auto;
+}
+
+@media (max-width:1300px) {
+  .innerApp {
+    padding: 20px;
+  }
 }

@@ -1,9 +1,9 @@
-import './ToDo.css';
-import { useState, useEffect, useRef } from "react";
-// import Done from "./../../assets/done.png";
+import s from './ToDo.module.css';
+import { useState } from "react";
 import Edit from "./../../assets/edit.png";
 import Delete from "./../../assets/delete.png";
 import Save from "./../../assets/save.png";
+import InputEdit from '../inputEdit/InputEdit';
 
 
 const ToDo = ({ task, handleDelete, handleEdit, tasks, setTasks }) => {
@@ -11,8 +11,9 @@ const ToDo = ({ task, handleDelete, handleEdit, tasks, setTasks }) => {
     const [isEdit, setIsEdit] = useState(false);
     const [text, setText] = useState(task.title);
 
-    const handleComplete = () => {
-        setTasks(tasks.map( item => {
+
+    const handleComplete = () => {    // заваршина таска или нет 
+        setTasks(tasks.map(item => {
             if (item.id === task.id) {
                 return {
                     ...item, completed: !item.completed
@@ -20,50 +21,50 @@ const ToDo = ({ task, handleDelete, handleEdit, tasks, setTasks }) => {
             }
             return item;
         }))
-        // console.log("handleComplete");
     }
 
-    const toglle = () => {
+    const toggle = () => {
         if (isEdit) {
             handleEdit(task.id, text);
-            setIsEdit(!isEdit);
-        } else {
-            setIsEdit(!isEdit);
         }
+        setIsEdit(!isEdit);
     };
 
-    //---------Задать фокус на инпут---------//
-    const inputEl = useRef(null);
-    const onFocusInput = () => {
-        inputEl.current.focus(); // current указывает на смонтированный элемент input
-    };
 
-    // componentDidMount
-    // useEffect( () => { 
-    //     inputEl.current.focus();
-    // }, []);
- //---------Задать фокус на инпут---------//
-
+    const onKeyDown = e =>{ // сохранение по нажатию Enter
+        if (e.key == 'Enter') { //e.keyCode == 13 -номер Enter
+            toggle()}
+        }
 
     return (
         <>
-            <div className={`innerItem ${task.id % 2 === 0 && "bg-color"}`}>
-                <div className="wrap-left">
-                    {/* <button onClick = {handleComplete} className="btn btn-done">
-                        <img src={Done} alt="done" />
-                    </button> */}
-                    <div className="checkbox" onClick = {handleComplete} >
-                        <input className="checkboxInput" type="checkbox" />
+            <div className={task.id % 2 === 0 ? s.innerItem : s.innerItemBg}>
+                <div  className={s.wrapLeft}>
+
+                    <div className={s.checkbox}>
+                        <input className={s.checkboxInput} type='checkbox' id={task.id} onClick={handleComplete} />
+                        <label className={s.checkboxLabel} htmlFor={task.id}></label>
                     </div>
+
                     {isEdit
-                        ? <input className="input-edit" ref={inputEl} onChange={(e) => setText(e.target.value)} value={text} />
-                        : <div className={`task-text ${task.completed && "completed"}`}>{task.title}</div>}
+                        ? <InputEdit 
+                            setText={setText}
+                            text={text}
+                            onKeyDown={onKeyDown}
+
+                        />
+                        : <div onClick={() => toggle()} className={task.completed && s.completed} >{task.title}</div>}
                 </div>
-                <div className="wrap-rigth">
-                    <button className="btn btn-delete" onClick={() => handleDelete(task.id)}><img src={Delete} alt="delete" /></button>
-                    <button className="btn btn-edit" onClick={() => toglle()}> {isEdit ? <img src={Save} alt="save" /> : <img onClick = {onFocusInput} src={Edit} alt="edit" />} </button>
+                <div className={s.wrapRight}>
+                    <button className={s.btnDelete} onClick={() => handleDelete(task.id)}>
+                        <img src={Delete} alt="delete" />
+                    </button>
+                    <button className={s.btnEdit} onClick={() => toggle()}>
+                        {isEdit ? <img src={Save} alt="save" /> : <img src={Edit} alt="edit" />}
+                    </button>
                 </div>
             </div>
+
         </>
     );
 }

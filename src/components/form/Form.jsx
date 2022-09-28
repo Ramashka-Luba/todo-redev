@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import './Form.css'
+import s from './Form.module.css'
 
 
 const Form = ({tasks, setTasks}) => {
@@ -8,7 +8,7 @@ const Form = ({tasks, setTasks}) => {
     const [text,setText] = useState('');
 
     const handleClick = (e) => {
-        e.preventDefault()
+        e.preventDefault() // не перезагружает форму после Enter
         // console.log("---handleClick---");
         if(text) { // условие чтоб не добовляла пустую строку
             setTasks([...tasks, {id: tasks.length+1 , title: text, completed: false}]);
@@ -20,9 +20,9 @@ const Form = ({tasks, setTasks}) => {
 
 
     return (
-        <form className="form">
-            <input onChange = {(e) => setText(e.target.value)} value = {text} className="input" placeholder="Add todo"/>
-            <button onClick = {(e) => handleClick(e)} className="add">Add Todo</button>
+        <form className={s.form}>
+            <input onChange = {(e) => setText(e.target.value)} value = {text} className={s.input} placeholder="Lead the task"/>
+            <button onClick = {(e) => handleClick(e)} className={s.add}>Add Todo</button>
         </form>
     );
 }

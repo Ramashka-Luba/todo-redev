@@ -8,9 +8,9 @@ import ToDo from './components/toDo/ToDo.jsx'
 const App = () => {
 
   const [tasks, setTasks] = useState([
-    { id: 1, title: "Orange", completed: false},
-    { id: 2, title: "Apple", completed: false},
-    { id: 3, title: "Banana", completed: false},
+    { id: 1, title: "Buy Orange", completed: false},
+    { id: 2, title: "Make a Two Sandwich", completed: false},
+    { id: 3, title: "Get a Taxi at 6p.m.", completed: false},
   ]);
   
   const handleDelete = (id) => {
@@ -46,63 +46,9 @@ const App = () => {
           ))}
         </ul>
       </div>
+
     </div>
   );
 }
 
 export default App;
-
-
-
-
-
-
-/////////////////////////////////////////////////////////////
-
-// import React, { useState } from 'react';
-// import './App.css';
-
-// import Form from './components/form/Form';
-// import ToDo from './components/toDo/ToDo';
-
-
-// function App() {
-
-//   const [inputText, setInputText] = useState('');
-//   const [todos, setTodos] = useState([]);
-
-//   return (
-//     <div className="App">
-//       <div className="inner">
-//         <h2 className="title">What's the Plan for Today?</h2>
-
-//         <Form
-//           inputText={inputText}
-//           todos={todos}
-//           setTodos={setTodos}
-//           setInputText={setInputText} />
-
-//         <ul className="list">
-//           {todos.map((todo, index) => (
-//             <ToDo 
-//               todos={todos}
-//               setTodos={setTodos}
-//               text={todo.text}
-//               key={todo.id}
-//               index={index}
-//               todo={todo} />
-//           ))}
-//         </ul>
-
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-
-
-
-

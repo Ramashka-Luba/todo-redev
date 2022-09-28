@@ -11,6 +11,11 @@
     background-color: #F7F7FF;
     box-sizing: border-box;
     font-size: 15px;
+    color:#6e7285;
+    font-family: 'Montserrat';
+}
+.input::placeholder{
+    color: rgb(202, 199, 199);
 }
 .input:focus {
     box-sizing: border-box;
