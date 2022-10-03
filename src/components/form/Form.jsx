@@ -7,7 +7,7 @@ const Form = ({tasks, setTasks}) => {
     
     const [text,setText] = useState('');
 
-    const handleClick = (e) => {
+    const handleClick = (e) => { //добавить новую таску
         e.preventDefault() // не перезагружает форму после Enter
         // console.log("---handleClick---");
         if(text) { // условие чтоб не добовляла пустую строку

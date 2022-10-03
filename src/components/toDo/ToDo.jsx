@@ -34,12 +34,15 @@ const ToDo = ({ task, handleDelete, handleEdit, tasks, setTasks }) => {
     const onKeyDown = e =>{ // сохранение по нажатию Enter
         if (e.key == 'Enter') { //e.keyCode == 13 -номер Enter
             toggle()}
+            
         }
+        console.log(task);
 
     return (
+        // console.log(task),
         <>
             <div className={task.id % 2 === 0 ? s.innerItem : s.innerItemBg}>
-                <div  className={s.wrapLeft}>
+                <div className={s.wrapLeft}>
 
                     <div className={s.checkbox}>
                         <input className={s.checkboxInput} type='checkbox' id={task.id} onClick={handleComplete} />
@@ -53,7 +56,7 @@ const ToDo = ({ task, handleDelete, handleEdit, tasks, setTasks }) => {
                             onKeyDown={onKeyDown}
 
                         />
-                        : <div onClick={() => toggle()} className={task.completed && s.completed} >{task.title}</div>}
+                        : <div onClick={() => toggle()}  className={task.completed && s.completed} >{task.title}</div>}
                 </div>
                 <div className={s.wrapRight}>
                     <button className={s.btnDelete} onClick={() => handleDelete(task.id)}>
