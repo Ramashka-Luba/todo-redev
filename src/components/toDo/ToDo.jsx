@@ -6,46 +6,47 @@ import Save from "./../../assets/save.png";
 import InputEdit from '../inputEdit/InputEdit';
 
 
-const ToDo = ({ task, handleDelete, handleEdit, tasks, setTasks }) => {
+const ToDo = ({ task, handleDelete, handleEdit, handleComplete}) => {
 
     const [isEdit, setIsEdit] = useState(false);
     const [text, setText] = useState(task.title);
 
 
-    const handleComplete = () => {    // заваршина таска или нет 
-        setTasks(tasks.map(item => {
-            if (item.id === task.id) {
-                return {
-                    ...item, completed: !item.completed
-                };
-            }
-            return item;
-        }))
-    }
+    // const handleComplete = () => {    // заваршина таска или нет 
+    //     setTasks(tasks.map(item => {
+    //         if (item.id === task.id) {
+    //             return {
+    //                 ...item, completed: !item.completed
+    //             };
+    //         }
+    //         return item;
+    //     }))
+    // };
 
     const toggle = () => {
         if (isEdit) {
             handleEdit(task.id, text);
+
         }
         setIsEdit(!isEdit);
     };
 
 
     const onKeyDown = e =>{ // сохранение по нажатию Enter
-        if (e.key == 'Enter') { //e.keyCode == 13 -номер Enter
+        if (e.key === 'Enter') { //e.keyCode == 13 -номер Enter
             toggle()}
             
         }
-        console.log(task);
 
     return (
-        // console.log(task),
         <>
             <div className={task.id % 2 === 0 ? s.innerItem : s.innerItemBg}>
-                <div className={s.wrapLeft}>
+                <div onClick={() => toggle()} className={s.wrapLeft}>
 
                     <div className={s.checkbox}>
-                        <input className={s.checkboxInput} type='checkbox' id={task.id} onClick={handleComplete} />
+                        <input className={s.checkboxInput} 
+                        type='checkbox' id={task.id} 
+                        onChange={() => handleComplete(task.id)} />
                         <label className={s.checkboxLabel} htmlFor={task.id}></label>
                     </div>
 
@@ -56,10 +57,10 @@ const ToDo = ({ task, handleDelete, handleEdit, tasks, setTasks }) => {
                             onKeyDown={onKeyDown}
 
                         />
-                        : <div onClick={() => toggle()}  className={task.completed && s.completed} >{task.title}</div>}
+                        : <div  className={task.completed ? s.completed : ""}>{task.title} {task.count} {task.date}</div>}
                 </div>
                 <div className={s.wrapRight}>
-                    <button className={s.btnDelete} onClick={() => handleDelete(task.id)}>
+                    <button className={s.btnDelete} onClick={() => handleDelete(task.id)}> 
                         <img src={Delete} alt="delete" />
                     </button>
                     <button className={s.btnEdit} onClick={() => toggle()}>
